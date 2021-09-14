@@ -1,1 +1,5 @@
 spyglass-1/
+*.log
+*.history
+*.swp
+xcelium.d/
