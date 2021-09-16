@@ -9,8 +9,10 @@ initial begin
 #0	clk =0;
 	i_dat='b1;
 #100	;
-#10	i_dat='b11x;
+#10	i_dat='b11;
+
 #100	;
+$finish;
 end
 
 always #5 clk <= ~clk;
