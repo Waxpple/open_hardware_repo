@@ -197,3 +197,35 @@ assign qout = qout_r;
 `endif
 endmodule
 
+// ====================
+// ltch : 
+//	Description:
+//		verilog for general latchs
+// ====================
+module ltch # (
+	parameter DW = 32
+) (
+	input lden,
+	input [DW-1:0] din,
+	output [DW-1:0] qout
+);
+
+reg [DW-1:0] qout_r;
+always @ (*)begin:LTCH_PROC
+	if(lden==1'b1)
+		qout_r <= din;
+end
+
+assign qout = qout_r;
+
+`ifndef FPGA_SOURCE
+`ifndef DISABLE_SV_ASSERTION
+
+always_comb begin : CHECK_THE_X_VALUE
+	assert (lden !== 1'bx) 
+	else   $fatal ("\n Error: Oops! X value propagate!\n");
+end
+
+`endif
+`endif
+endmodule
